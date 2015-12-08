@@ -1,5 +1,6 @@
 package com.softserveinc;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -57,6 +58,26 @@ public class ReadersDAO {
                 String surname = result.getString("surname");
                 Integer days = result.getInt("days");
                 System.out.printf("Name: %s, \t Surname: %s, \t Count of days: %d ", name, surname, days);
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * print average number of appeals to the library
+     */
+    public static void getAverageNumberOfAppeals() {
+        String sqlQuery = "SELECT count(idReader) / (count(distinct idReader)) as 'number'" +
+                "FROM orderreader WHERE dataOrder Between ? AND ?;";
+        try (PreparedStatement statement = JDBConnector.getInstance().prepareStatement(sqlQuery)) {
+            statement.setString(1, "2015-07-01");
+            statement.setString(2, "2015-12-06");
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Double number = result.getDouble("number");
+                System.out.printf("Average number of appeals: %.2f ", number);
                 System.out.println();
             }
         } catch (SQLException e) {

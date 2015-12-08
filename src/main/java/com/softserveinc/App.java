@@ -13,6 +13,7 @@ public class App
         //ReadersDAO.getListOfDebtors();
         //ReadersDAO.getAverageAgeOfReaders();
         //ReadersDAO.getTimeOfUsingLibrary();
+        //ReadersDAO.getAverageNumberOfAppeals();
         //Ruslan's methods
 
         JDBConnector.getInstance().close();

@@ -36,9 +36,27 @@ public class ReadersDAO {
     public static void getAverageAgeOfReaders() {
         try (Statement statement = JDBConnector.getInstance().createStatement()) {
             ResultSet result = statement.executeQuery("SELECT (AVG( DATEDIFF(CURRENT_TIMESTAMP, birth) / 365)) as 'years' FROM Reader;");
-            while(result.next()) {
+            while (result.next()) {
                 Double averageAge = result.getDouble("years");
                 System.out.printf("Average age: %.2f", averageAge);
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * print time of using library for each reader
+     */
+    public static void getTimeOfUsingLibrary() {
+        try (Statement statement = JDBConnector.getInstance().createStatement()) {
+            ResultSet result = statement.executeQuery("SELECT name, surname, DATEDIFF(CURRENT_TIMESTAMP, dateOfCreate) as 'days' FROM Reader;");
+            while (result.next()) {
+                String name = result.getString("name");
+                String surname = result.getString("surname");
+                Integer days = result.getInt("days");
+                System.out.printf("Name: %s, \t Surname: %s, \t Count of days: %d ", name, surname, days);
                 System.out.println();
             }
         } catch (SQLException e) {

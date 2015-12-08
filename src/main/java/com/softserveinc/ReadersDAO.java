@@ -29,4 +29,20 @@ public class ReadersDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * print average age of all readers
+     */
+    public static void getAverageAgeOfReaders() {
+        try (Statement statement = JDBConnector.getInstance().createStatement()) {
+            ResultSet result = statement.executeQuery("SELECT (AVG( DATEDIFF(CURRENT_TIMESTAMP, birth) / 365)) as 'years' FROM Reader;");
+            while(result.next()) {
+                Double averageAge = result.getDouble("years");
+                System.out.printf("Average age: %.2f", averageAge);
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

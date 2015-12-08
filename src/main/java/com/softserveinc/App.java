@@ -10,8 +10,8 @@ public class App
         query.ifBookIsAvailable();
 
         //Bohdan's methods
-        ReadersDAO.getListOfDebtors();
-
+        //ReadersDAO.getListOfDebtors();
+        ReadersDAO.getAverageAgeOfReaders();
         //Ruslan's methods
 
         JDBConnector.getInstance().close();

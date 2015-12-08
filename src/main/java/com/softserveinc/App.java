@@ -7,7 +7,11 @@ public class App
     public static void main( String[] args ) throws SQLException {
         //Ihor's methods
         QueriesByIhor query = new QueriesByIhor();
-        query.ifBookIsAvailable();
+//        query.ifBookIsAvailable();
+//        query.findBookByAuthor();
+//        query.findBookByCoauthor();
+//        query.showReaderStatistic();
+//        query.howLongReaderUsesLibrary();
 
         //Bohdan's methods
         //ReadersDAO.getListOfDebtors();

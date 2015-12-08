@@ -8,17 +8,29 @@ import java.sql.Statement;
  * Created by Ihor Sokolyk on 08.12.2015.
  */
 public class QueriesByIhor {
-    public void ifBookIsAvailable() throws SQLException {
-        Statement st = JDBConnector.getInstance().createStatement();
-        ResultSet set = st.executeQuery("SELECT book.*, COUNT(copy.code) AS availableCount\n" +
-                "FROM book join copy\n" +
-                "ON book.code=copy.code\n" +
-                "WHERE book.name LIKE 'Зона Покриття'\n" +
-                "AND copy.isInStock=1\n" +
-                "GROUP BY copy.code;");
-        System.out.println("Code\tName\t\tEdition\tidAuthor\tYear\tpages\tCountOfCopy\tAvailableCount");
-//        while (set.next()){
-//
-//        }
+    /**
+     * Method finds if book 'Зона покриття' is available.
+     */
+    public void ifBookIsAvailable() {
+        System.out.println("Title\t\t\tName\tSurname\tAvailableCount");
+        try {
+            Statement st = JDBConnector.getInstance().createStatement();
+            ResultSet set = st.executeQuery("SELECT book.name, author.name, author.surname,"
+                    + " COUNT(copy.code) AS availableCount"
+                    + " FROM book join copy join author"
+                    + " ON book.code=copy.code"
+                    + " AND book.idAuthor=author.idAuthor"
+                    + " WHERE book.name LIKE 'Зона Покриття'"
+                    + " AND copy.isInStock=1"
+                    + " GROUP BY copy.code;");
+            while (set.next()) {
+                System.out.println(set.getString(1) + "\t" + set.getString(2) + "\t"
+                        + set.getString(3) + "\t" + set.getString(4));
+            }
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("SQLException");
+        }
+
     }
 }

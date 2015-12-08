@@ -19,6 +19,7 @@ public class App
         //ReadersDAO.getTimeOfUsingLibrary();
         //ReadersDAO.getAverageNumberOfAppeals();
         //ReadersDAO.getAverageAgeOfReadersByBook();
+        //BooksDAO.getCountOfCopies();
         //Ruslan's methods
 
         JDBConnector.getInstance().close();

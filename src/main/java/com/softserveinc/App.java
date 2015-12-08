@@ -6,7 +6,8 @@ public class App
 {
     public static void main( String[] args ) throws SQLException {
         //Ihor's methods
-
+        QueriesByIhor query = new QueriesByIhor();
+        query.ifBookIsAvailable();
 
         //Bohdan's methods
         //ReadersDAO.getListOfDebtors();

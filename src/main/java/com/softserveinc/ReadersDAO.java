@@ -84,4 +84,25 @@ public class ReadersDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * print average age of all readers who read some book
+     */
+    public static void getAverageAgeOfReadersByBook() {
+        String sqlQuery = "SELECT (AVG( DATEDIFF(CURRENT_TIMESTAMP, birth) / 365)) as 'years'" +
+                " FROM reader join (SELECT idReader FROM orderreader" +
+                " join (SELECT inventoryNumber FROM copy WHERE code = (SELECT code FROM book where name= ? LIMIT 1)) as invNumbers" +
+                " on orderreader.inventoryNumber = invNumbers.inventoryNumber) as readersId on reader.idReader = readersId.idReader;";
+        try (PreparedStatement statement = JDBConnector.getInstance().prepareStatement(sqlQuery)) {
+            statement.setString(1, "Бот");
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Double years = result.getDouble("years");
+                System.out.printf("Average age of readers: %.2f ", years);
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

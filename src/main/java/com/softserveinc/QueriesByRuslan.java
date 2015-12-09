@@ -33,10 +33,10 @@ public class QueriesByRuslan {
 
     public void findTimesGeneral() {
         String query = "SELECT book.name AS book,COUNT(idOrder) as count"
-                + "FROM orderreader INNER JOIN "
+                + " FROM orderreader INNER JOIN "
                 + "(copy INNER JOIN book ON copy.code = book.code)"
-                + "ON orderreader.inventoryNumber = copy.inventoryNumber "
-                + "GROUP BY NAME";
+                + " ON orderreader.inventoryNumber = copy.inventoryNumber "
+                + " GROUP BY NAME";
         try (Statement st = JDBConnector.getInstance().createStatement()) {
             ResultSet set = st.executeQuery(query);
             while (set.next()) {

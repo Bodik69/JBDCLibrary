@@ -21,7 +21,7 @@ public class App
         //ReadersDAO.getAverageAgeOfReadersByBook();
         //BooksDAO.getCountOfCopies();
         //Ruslan's methods
-		//QueriesByRuslan queriesByRuslan = new QueriesByRuslan();
+		QueriesByRuslan queriesByRuslan = new QueriesByRuslan();
         //queriesByRuslan.countBookInIndependence();
         //queriesByRuslan.findTimesGeneral();
         //queriesByRuslan.findTimesByCopy();

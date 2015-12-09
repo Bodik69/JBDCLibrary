@@ -23,11 +23,6 @@ public class App
         //BooksDAO.getCountOfCopies();
         //Ruslan's methods
 		QueriesByRuslan queriesByRuslan = new QueriesByRuslan();
-        //queriesByRuslan.countBookInIndependence();
-        //queriesByRuslan.findTimesGeneral();
-        //queriesByRuslan.findTimesByCopy();
-        //queriesByRuslan.findAvgOfReading();
-        //queriesByRuslan.findPopularBookByPeriod();
 
         boolean isExit = true;
         while(isExit) {
@@ -51,6 +46,16 @@ public class App
                     "'exit' - for exit");
             Scanner scanner = new Scanner(System.in);
             switch(scanner.next()) {
+                case "6" : queriesByRuslan.countBookInIndependence();
+                    break;
+                case "7" : queriesByRuslan.findTimesGeneral();
+                    break;
+                case "8" : queriesByRuslan.findTimesByCopy();
+                    break;
+                case "9" : queriesByRuslan.findAvgOfReading();
+                    break;
+                case "10" : queriesByRuslan.findPopularBookByPeriod();
+                    break;
                 case "11": ReadersDAO.getListOfDebtors();
                     break;
                 case "12": ReadersDAO.getAverageAgeOfReaders();
